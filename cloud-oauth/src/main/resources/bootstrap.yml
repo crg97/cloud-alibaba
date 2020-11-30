@@ -1,0 +1,46 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: cloud-oauth
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+      config:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+  redis:
+    port: 6379
+    host: 127.0.0.1
+
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+
+#oauth2-server-url: http://localhost:${server.port}
+#
+#security:
+#  oauth2: #与oauth2-server对应的配置
+#    client:
+#      client-id: admin
+#      client-secret: admin123456
+#      user-authorization-uri: ${oauth2-server-url}/oauth/authorize
+#      access-token-uri: ${oauth2-server-url}/oauth/token
+#    resource:
+#      jwt:
+#        key-uri: ${oauth2-server-url}/oauth/token_key
+

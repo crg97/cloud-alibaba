@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.11.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>cloud-entity</module>
+    <module>cloud-common</module>
+    <module>cloud-security</module>
+    <module>cloud-gateway</module>
+    <module>cloud-provider-1</module>
+    <module>cloud-oauth</module>
+    <module>cloud-oauth-api</module>
+  </modules>
+
+  <groupId>com.scaffold</groupId>
+  <artifactId>cloud-alibaba</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>cloud-alibaba</name>
+  <description>Demo project for Spring Boot</description>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+    <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
+    <spring-cloud.gateway.version>2.2.3.RELEASE</spring-cloud.gateway.version>
+    <spring-redis>2.2.3.RELEASE</spring-redis>
+    <spring-cloud-openfeign>2.2.3.RELEASE</spring-cloud-openfeign>
+    <spring-oauth2>2.2.2.RELEASE</spring-oauth2>
+    <spring-security>2.2.2.RELEASE</spring-security>
+    <project.lombok>1.18.12</project.lombok>
+    <fastjson.version>1.2.73</fastjson.version>
+    <common.lang3>3.10</common.lang3>
+
+    <!--this project-->
+    <scaffold.common>0.0.1-SNAPSHOT</scaffold.common>
+    <scaffold.entity>0.0.1-SNAPSHOT</scaffold.entity>
+    <scaffold.security>0.0.1-SNAPSHOT</scaffold.security>
+    <scaffold.oauth.api>0.0.1-SNAPSHOT</scaffold.oauth.api>
+  </properties>
+
+  <dependencies>
+
+
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.scaffold</groupId>
+        <artifactId>cloud-common</artifactId>
+        <version>${scaffold.common}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.scaffold</groupId>
+        <artifactId>cloud-entity</artifactId>
+        <version>${scaffold.entity}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.scaffold</groupId>
+        <artifactId>cloud-security</artifactId>
+        <version>${scaffold.security}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.scaffold</groupId>
+        <artifactId>cloud-oauth-api</artifactId>
+        <version>${scaffold.oauth.api}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+        <version>${spring-cloud-openfeign}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        <version>2.2.3.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        <version>2.2.3.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+        <version>2.2.3.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>2.2.3.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>2.2.3.RELEASE</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${common.lang3}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <!-- 是否开启发布版构件下载 -->
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <!-- 是否开启快照版构件下载 -->
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

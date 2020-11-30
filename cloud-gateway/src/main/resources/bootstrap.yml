@@ -1,0 +1,70 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: cloud-gateway
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+      config:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+        file-extension: yaml
+    gateway:
+      routes:
+      - id: provider-1
+        uri: lb://cloud-provider-1
+#        uri: http://localhost:9002
+        order: 10000
+        filters:
+          - RewritePath=/provider-1/(?<segment>.*), /$\{segment}
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 10  # 允许用户每秒处理多少个请求
+              redis-rate-limiter.burstCapacity: 20  # 令牌桶的容量，允许在一秒钟内完成的最大请求数
+              key-resolver: "#{@remoteAddrKeyResolver}" #SPEL表达式去的对应的bean
+        predicates:
+          - Path=/provider-1/**
+      - id: provider-2
+        uri: lb://cloud-provider-2
+        order: 10000
+        filters:
+          - RewritePath=/provider-2/(?<segment>.*), /$\{segment}
+          - name: RequestRateLimiter
+            args:
+              redis-rate-limiter.replenishRate: 10  # 允许用户每秒处理多少个请求
+              redis-rate-limiter.burstCapacity: 20  # 令牌桶的容量，允许在一秒钟内完成的最大请求数
+              key-resolver: "#{@remoteAddrKeyResolver}" #SPEL表达式去的对应的bean
+        predicates:
+          - Path=/provider-2/**
+
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+
+#security:
+#  oauth2: #与oauth2-server对应的配置
+#    #    client:
+#    #      user-authorization-uri: ${oauth2-server-url}/oauth/authorize
+#    #      access-token-uri: ${oauth2-server-url}/oauth/token
+#    #    authorization:
+#    #      check-token-access: ${oauth2-server-url}/oauth/check_token
+#    resource:
+#      loadBalanced: true
+#      token-info-uri: http://cloud-oauth/oauth/check_token

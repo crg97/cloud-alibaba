@@ -1,0 +1,35 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: cloud-provider-1
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    port: 6379
+    host: 127.0.0.1
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+      config:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+        file-extension: yaml
+
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
