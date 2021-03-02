@@ -21,6 +21,18 @@ spring:
         group: cloud-alibaba
         file-extension: yaml
 
+# 通过nacos配置
+#security:
+#  oauth2: #与oauth2-server对应的配置
+#    #    client:
+#    #      user-authorization-uri: ${oauth2-server-url}/oauth/authorize
+#    #      access-token-uri: ${oauth2-server-url}/oauth/token
+#    #    authorization:
+#    #      check-token-access: ${oauth2-server-url}/oauth/check_token
+#    resource:
+#      loadBalanced: true
+#      token-info-uri: http://cloud-oauth/oauth/check_token
+
 feign:
   hystrix:
     enabled: true
