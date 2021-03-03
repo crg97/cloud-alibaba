@@ -20,6 +20,8 @@ spring:
         server-addr: http://localhost:9000
         group: cloud-alibaba
         file-extension: yaml
+  zipkin:
+    base-url: http://localhost:9100
 
 # 通过nacos配置
 #security:
@@ -32,16 +34,3 @@ spring:
 #    resource:
 #      loadBalanced: true
 #      token-info-uri: http://cloud-oauth/oauth/check_token
-
-feign:
-  hystrix:
-    enabled: true
-  okhttp:
-    enabled: true
-  httpclient:
-    enabled: false
-  client:
-    config:
-      default:
-        connectTimeout: 10000
-        readTimeout: 10000

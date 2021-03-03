@@ -8,6 +8,8 @@ spring:
     active: dev
   main:
     allow-bean-definition-overriding: true
+  zipkin:
+    base-url: http://localhost:9100
   cloud:
     nacos:
       discovery:

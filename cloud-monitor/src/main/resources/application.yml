@@ -1,0 +1,25 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: cloud-monitor
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+      config:
+        server-addr: http://localhost:9000
+        group: cloud-alibaba
+        file-extension: yaml
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
