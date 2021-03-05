@@ -1,7 +1,5 @@
 package com.cloud.scaffold.config;
 
-import com.cloud.scaffold.handle.SecurityAccessDeniedHandler;
-import com.cloud.scaffold.handle.SecurityAuthenticationEntryPoint;
 import com.cloud.scaffold.service.UserService;
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +10,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
-import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 @Configuration
@@ -51,8 +47,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients();
-        security.tokenKeyAccess("permitAll()");
-        security.checkTokenAccess("isAuthenticated()");
+        security.tokenKeyAccess("isAuthenticated()");
+        security.checkTokenAccess("permitAll()");
     }
 
 }

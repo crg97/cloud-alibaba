@@ -1,5 +1,6 @@
 package com.cloud.scaffold.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/test")
+@SentinelResource(value = "testController")
 public class TestController {
 
   @Value("${test.value:}")
@@ -15,7 +17,6 @@ public class TestController {
 
   @GetMapping("/testValue")
   public String testValue() {
-    int i = 1/0;
     return "test value is:" + testValue;
   }
 

@@ -18,6 +18,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 这一步的配置是必不可少的，否则SpringBoot会自动配置一个AuthenticationManager,覆盖掉内存中的用户
+     * @return 认证管理对象
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

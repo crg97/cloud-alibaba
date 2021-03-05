@@ -20,6 +20,11 @@ spring:
         server-addr: http://localhost:9000
         group: cloud-alibaba
         file-extension: yaml
+    sentinel:
+      transport:
+        port: 9301
+        dashboard: localhost:9200
+
   zipkin:
     base-url: http://localhost:9100
 
