@@ -23,6 +23,10 @@ spring:
   zipkin:
     base-url: http://localhost:9100
 
+#feign:
+#  sentinel:
+#    enabled: true
+
 # 通过nacos配置
 #security:
 #  oauth2: #与oauth2-server对应的配置

@@ -20,18 +20,6 @@ spring:
   zipkin:
     base-url: http://localhost:9100
 
-feign:
-  hystrix:
-    enabled: true
-  okhttp:
-    enabled: true
-  httpclient:
-    enabled: false
-  client:
-    config:
-      default:
-        connectTimeout: 10000
-        readTimeout: 10000
 
 #oauth2-server-url: http://localhost:${server.port}
 #

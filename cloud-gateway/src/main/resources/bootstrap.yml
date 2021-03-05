@@ -48,17 +48,8 @@ spring:
           - Path=/provider-2/**
 
 feign:
-  hystrix:
+  sentinel:
     enabled: true
-  okhttp:
-    enabled: true
-  httpclient:
-    enabled: false
-  client:
-    config:
-      default:
-        connectTimeout: 10000
-        readTimeout: 10000
 
 #security:
 #  oauth2: #与oauth2-server对应的配置
